@@ -314,7 +314,7 @@ class Node:
 def make_grid(rows, width):
     grid = []
     gap = WIDTH // rows
-    print(gap)
+    #print(gap)
     for i in range(rows):
         grid.append([])
         for j in range(rows):
@@ -399,8 +399,8 @@ def check_winner(board):
             black_king -= 1
         else:
             black_king += 1
-    print(white_king)
-    print(black_king)
+    #print(white_king)
+    #print(black_king)
     if white_king == 65:
         print("Black wins!")
         return 'Black'
