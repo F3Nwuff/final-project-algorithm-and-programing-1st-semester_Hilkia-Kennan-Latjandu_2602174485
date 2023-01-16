@@ -29,8 +29,8 @@ wkn = Piece('w', 'kn', 'images/W_Knight2.png')
 
 
 starting_order = {(0, 0): pygame.image.load(br.image), (1, 0): pygame.image.load(bkn.image),
-                  (2, 0): pygame.image.load(bb.image), (3, 0): pygame.image.load(bk.image),
-                  (4, 0): pygame.image.load(bq.image), (5, 0): pygame.image.load(bb.image),
+                  (2, 0): pygame.image.load(bb.image), (3, 0): pygame.image.load(bq.image),
+                  (4, 0): pygame.image.load(bk.image), (5, 0): pygame.image.load(bb.image),
                   (6, 0): pygame.image.load(bkn.image), (7, 0): pygame.image.load(br.image),
                   (0, 1): pygame.image.load(bp.image), (1, 1): pygame.image.load(bp.image),
                   (2, 1): pygame.image.load(bp.image), (3, 1): pygame.image.load(bp.image),
@@ -51,8 +51,8 @@ starting_order = {(0, 0): pygame.image.load(br.image), (1, 0): pygame.image.load
                   (4, 6): pygame.image.load(wp.image), (5, 6): pygame.image.load(wp.image),
                   (6, 6): pygame.image.load(wp.image), (7, 6): pygame.image.load(wp.image),
                   (0, 7): pygame.image.load(wr.image), (1, 7): pygame.image.load(wkn.image),
-                  (2, 7): pygame.image.load(wb.image), (3, 7): pygame.image.load(wk.image),
-                  (4, 7): pygame.image.load(wq.image), (5, 7): pygame.image.load(wb.image),
+                  (2, 7): pygame.image.load(wb.image), (3, 7): pygame.image.load(wq.image),
+                  (4, 7): pygame.image.load(wk.image), (5, 7): pygame.image.load(wb.image),
                   (6, 7): pygame.image.load(wkn.image), (7, 7): pygame.image.load(wr.image),}
 
 
@@ -404,22 +404,29 @@ def check_winner(board):
     """
     This function checks if a king has disappeared from the board and declares the winner
     """
-    white_king = False
-    black_king = False
+    white_king = 0
+    black_king = 0
     for row in board:
         for piece in row:
             if piece == 'wk':
-                white_king = True
+                white_king -= 1
+            else:
+                white_king += 1
             if piece == 'bk':
-                black_king = True
-    if not white_king:
+                black_king -= 1
+            else:
+                black_king += 1
+    print(white_king)
+    print(black_king)
+    if white_king == 64:
         print("Black wins!")
         return 'Black'
-    elif not black_king:
+    elif black_king == 64:
         print("White wins!")
         return 'White'
     else:
-        return None
+        white_king = 0
+        black_king = 0
 
 """this takes in 2 co-ordinate parameters which you can get as the position of the piece and then the position of the node it is moving to
 you can get those co-ordinates using my old function for swap"""
@@ -491,15 +498,14 @@ def main(WIN, WIDTH):
                             selected = False
                             print("Invalid move")
                     selected = False
+                # Game logic and moves
+            winner = check_winner(board)
+            if winner:
+                print("Winner is: " + winner)
+                pygame.quit()
+                sys.exit()
 
             update_display(WIN, grid, 8, WIDTH)
-    while True:
-    # Game logic and moves
 
-        winner = check_winner(board)
-        if winner:
-            print("Winner is: " + winner)
-            pygame.quit()
-            sys.exit()
 
 main(WIN, WIDTH)
