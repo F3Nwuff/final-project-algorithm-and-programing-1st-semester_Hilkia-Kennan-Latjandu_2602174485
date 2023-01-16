@@ -406,28 +406,28 @@ def check_winner(board):
     """
     white_king = 0
     black_king = 0
-    for row in board:
-        for piece in row:
-            if piece == 'wk':
-                white_king -= 1
-            else:
-                white_king += 1
-            if piece == 'bk':
-                black_king -= 1
-            else:
-                black_king += 1
+    ner = convert_to_readable(board)
+    winn = ner.split(", ")
+    for piece in winn:
+        if piece == 'wk':
+            white_king -= 1
+        else:
+            white_king += 1
+        if piece == 'bk':
+            black_king -= 1
+        else:
+            black_king += 1
     print(white_king)
     print(black_king)
-    if white_king == 64:
+    if white_king == 65:
         print("Black wins!")
         return 'Black'
-    elif black_king == 64:
+    elif black_king == 65:
         print("White wins!")
         return 'White'
     else:
         white_king = 0
         black_king = 0
-
 """this takes in 2 co-ordinate parameters which you can get as the position of the piece and then the position of the node it is moving to
 you can get those co-ordinates using my old function for swap"""
 
