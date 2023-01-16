@@ -96,4 +96,4 @@ and there is a very high chance that it does not run properly, import chess is v
 without it the code is extremely long, buttons between python code are pretty problematic. 
 
 
-the video demo link is : 
+the video demo link is : https://drive.google.com/drive/u/0/folders/1OgNU345I1_zAJMaqQjdewFo1Nn_Z8nZW
