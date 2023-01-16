@@ -103,24 +103,6 @@ def deselect():
                 except:
                     pass
     return convert_to_readable(board)
-## promotion
-def promote_pawn(x, y):
-    """Promotes a pawn to a queen, rook, bishop, or knight"""
-    # Assume that the current player's pawn is at position (x, y)
-    promotion_options = ["queen", "rook", "bishop", "knight"]
-    choice = None
-    while choice not in promotion_options:
-        # Display promotion options to the user and get their choice
-        choice = input("Promote pawn to (queen, rook, bishop, knight): ").lower()
-    # Replace the pawn with the chosen piece
-    if choice == "queen":
-        board[x][y] = "Q"
-    elif choice == "rook":
-        board[x][y] = "R"
-    elif choice == "bishop":
-        board[x][y] = "B"
-    elif choice == "knight":
-        board[x][y] = "N"
 
 ## Takes in board as argument then returns 2d array containing positions of valid moves
 def highlight(board):
